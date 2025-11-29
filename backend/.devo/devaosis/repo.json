@@ -1,0 +1,21 @@
+{
+  "name": "devaosis",
+  "description": "This a platform that provide the devlopers to connect and contibute in their projects",
+  "visibility": "public",
+  "owner": "6928d2ddd93a5c005515ee9b",
+  "content": [
+    {
+      "branch": "main"
+    },
+    {
+      "0": {
+        "branch": "main"
+      },
+      "branch": "main"
+    }
+  ],
+  "branches": [
+    "main"
+  ],
+  "currentBranch": "main"
+}
