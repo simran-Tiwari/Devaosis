@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import server from "../enviroment";
 export default function UpdateIssue() {
   const { id } = useParams(); // issue ID
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ export default function UpdateIssue() {
   useEffect(() => {
     const fetchIssue = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/api/issue/${id}`);
+        const res = await axios.get(`${server}//issue/${id}`);
         const issue = res.data;
         setTitle(issue.title);
         setDescription(issue.description);
@@ -34,7 +34,7 @@ export default function UpdateIssue() {
     }
 
     try {
-      await axios.put(`http://localhost:3000/api/issue/update/${id}`, { title, description, status });
+      await axios.put(`${server}/issue/update/${id}`, { title, description, status });
       // Redirect to repository's issues list
       if (repoId) navigate(`/repo/${repoId}/issues`);
       else navigate(-1); // fallback

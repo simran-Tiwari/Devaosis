@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import server from "../enviroment";
 export default function RepoEdit() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ export default function RepoEdit() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/repo/${id}`)
+      .get(`${server}/repo/${id}`)
       .then(res => {
         setRepo(Array.isArray(res.data) ? res.data[0] : res.data);
         setLoading(false);
@@ -25,7 +25,7 @@ export default function RepoEdit() {
 
   const handleSave = async () => {
     try {
-      const res = await axios.put(`http://localhost:3000/repo/update/${id}`, repo);
+      const res = await axios.put(`${server}/repo/update/${id}`, repo);
       if (res.status === 200) {
         navigate(`/repo/${id}`); // back to RepositoryPage
       } else {

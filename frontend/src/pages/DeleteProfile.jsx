@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-
+import server from "../enviroment";
 export default function DeleteProfile() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -7,7 +7,7 @@ export default function DeleteProfile() {
   const handleDelete = async () => {
     if (!window.confirm("Are you sure you want to delete your profile?")) return;
     try {
-      await fetch(`http://localhost:3000/deleteProfile/${id}`, { method: "DELETE" });
+      await fetch(`${server}/deleteProfile/${id}`, { method: "DELETE" });
       alert("Profile deleted successfully");
       navigate("/signup"); 
     } catch (err) {

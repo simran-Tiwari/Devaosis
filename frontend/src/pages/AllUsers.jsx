@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import server from '../enviroment'
 export default function AllUsers() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -9,7 +9,7 @@ export default function AllUsers() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch("http://localhost:3000/allUsers");
+        const res = await fetch(`${server}/allUsers` );
         const data = await res.json();
         setUsers(data || []);
       } catch (err) {

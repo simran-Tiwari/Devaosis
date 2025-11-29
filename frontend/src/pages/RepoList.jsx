@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import server from "../enviroment";
 export default function RepoList() {
   const [repos, setRepos] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const fetchRepos = async () => {
     try {
-      const res = await fetch("http://localhost:3000/repo/all");
+      const res = await fetch(`${server}/repo/all`);
       const data = await res.json();
       setRepos(Array.isArray(data) ? data : []);
       setLoading(false);

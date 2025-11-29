@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import RepoCard from "../components/RepoCard";
-
+import server from "../enviroment";
 export default function UserRepos() {
   const { userID } = useParams();
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ export default function UserRepos() {
   useEffect(() => {
     const fetchRepos = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/api/repo/user/${userID}`);
+        const res = await fetch(`${server}/repo/user/${userID}`);
         const data = await res.json();
         setRepos(data || []);
       } catch (err) {

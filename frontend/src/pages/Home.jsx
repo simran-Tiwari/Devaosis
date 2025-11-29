@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext.jsx";
 import axios from "axios";
-
+import server from "../enviroment.js";
 export default function Home() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -21,7 +21,7 @@ export default function Home() {
     setLoading(true);
     try {
       const userId = user._id || user.id;
-      const res = await axios.get(`http://localhost:3000/repo/user/${userId}`);
+      const res = await axios.get(`${server}/user/${userId}`);
       const data = res.data;
 
       

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
+import server from "../enviroment";
 export default function UpdateBio() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -8,7 +8,7 @@ export default function UpdateBio() {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await fetch(`http://localhost:3000/userProfile/${id}`);
+      const res = await fetch(`${server}/userProfile/${id}`);
       const data = await res.json();
       setBio(data.bio || "");
     };
@@ -18,7 +18,7 @@ export default function UpdateBio() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await fetch(`http://localhost:3000/updateBio/${id}`, {
+      await fetch(`${server}/updateBio/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ bio }),

@@ -4,7 +4,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
 import CodeViewer from "../components/CodeViewer";
-
+import server from "../enviroment";
 export default function RepositoryPage() {
   const { id } = useParams();
   const location = useLocation();
@@ -31,7 +31,7 @@ export default function RepositoryPage() {
     const fetchRepo = async () => {
       setLoadingRepo(true);
       try {
-        const res = await fetch(`http://localhost:3000/repo/${id}`);
+        const res = await fetch(`${server}/repo/${id}`);
         if (!res.ok) throw new Error("Failed to fetch repository");
         const data = await res.json();
         setRepo(Array.isArray(data) ? data[0] : data);
@@ -51,7 +51,7 @@ export default function RepositoryPage() {
     const fetchBranches = async () => {
       setLoadingBranches(true);
       try {
-        const res = await fetch(`http://localhost:3000/repo/branches/${id}`);
+        const res = await fetch(`${server}/repo/branches/${id}`);
         if (!res.ok) throw new Error("Failed to fetch branches");
         const data = await res.json();
         setBranches(data.branches || []);

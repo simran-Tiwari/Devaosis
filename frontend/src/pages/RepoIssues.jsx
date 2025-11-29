@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import IssueCard from "../components/IssueCard";
-
+import server from "../enviroment";
 export default function RepoIssues() {
   const { id } = useParams(); // repo ID
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ export default function RepoIssues() {
   const fetchIssues = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`http://localhost:3000/issue/all`, {
+      const res = await axios.get(`${server}/issue/all`, {
         params: { id },
       });
       setIssues(res.data || []);

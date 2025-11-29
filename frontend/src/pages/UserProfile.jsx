@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
+import server from "../enviroment";
 export default function UserProfile() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ export default function UserProfile() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/userProfile/${id}`);
+        const res = await fetch(`${server}/userProfile/${id}`);
         const data = await res.json();
         setUser(data);
       } catch (err) {

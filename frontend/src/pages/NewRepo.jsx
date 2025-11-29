@@ -2,7 +2,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext.jsx";
-
+import server from "../enviroment.js";
 export default function NewRepo() {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ export default function NewRepo() {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/repo/create", {
+      const res = await fetch(`${server}/repo/create`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

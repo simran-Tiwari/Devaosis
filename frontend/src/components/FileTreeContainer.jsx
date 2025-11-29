@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import FileTree from "./FileTree";
 import CodeViewer from "./CodeViewer";
 import axios from "axios";
-
+import server from "../enviroment";
 export default function FileTreeContainer({ repoId, initialFile }) {
   const [tree, setTree] = useState([]);
   const [fileContent, setFileContent] = useState("// Select a file to view");
@@ -11,7 +11,7 @@ export default function FileTreeContainer({ repoId, initialFile }) {
   useEffect(() => {
     const fetchRepoFiles = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/repo/${repoId}`);
+        const res = await axios.get(`${server}/repo/${repoId}`);
         const repoData = Array.isArray(res.data) ? res.data[0] : res.data;
         setTree(repoData.content || []); 
       } catch (err) {
@@ -24,7 +24,7 @@ export default function FileTreeContainer({ repoId, initialFile }) {
   
   const loadFile = async (fileName) => {
     try {
-      const res = await axios.get("http://localhost:3000/file-content", {
+      const res = await axios.get(`${server}/file-content`, {
         params: { repoId, fileName },
       });
       setFileContent(res.data.content || "// Empty file");

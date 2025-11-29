@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import FileTree from "../components/FileTree";
-
+import server from "../enviroment";
 export default function FileTreePage() {
   const { repoId } = useParams();
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ export default function FileTreePage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/repo/${repoId}`)
+    fetch(`${server}/repo/${repoId}`)
       .then(res => res.json())
       .then(data => { setTree(Array.isArray(data) ? data[0]?.files || [] : data.files || []); })
       .catch(console.error)

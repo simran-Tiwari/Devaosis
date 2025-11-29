@@ -3,7 +3,7 @@
 // src/pages/AddIssuePage.jsx
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
+import server from "../enviroment";
 export default function AddIssuePage() {
   const { id: repoId } = useParams(); 
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ export default function AddIssuePage() {
     setMessage("");
 
     try {
-      const res = await fetch("http://localhost:3000/issue/create", {
+      const res = await fetch(`${server}/issue/create`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

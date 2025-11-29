@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import FileTreeContainer from "../components/FileTreeContainer";
 import axios from "axios";
-
+import server from "../enviroment";
 export default function RepoCode() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ export default function RepoCode() {
   useEffect(() => {
     const fetchRepo = async () => {
       try {
-        const res = await axios.get(`http://localhost:3000/repo/${id}`);
+        const res = await axios.get(`${server}/repo/${id}`);
         setRepo(Array.isArray(res.data) ? res.data[0] : res.data);
       } catch (err) {
         console.error(err);

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import RepoCard from "../components/RepoCard";
-
+import server from "../enviroment";
 export default function SearchRepo() {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
@@ -16,7 +16,7 @@ export default function SearchRepo() {
     setResults([]);
 
     try {
-      const res = await fetch(`http://localhost:3000/repo/name/${query}`);
+      const res = await fetch(`${server}/repo/name/${query}`);
 
       if (!res.ok) {
         if (res.status === 404) {

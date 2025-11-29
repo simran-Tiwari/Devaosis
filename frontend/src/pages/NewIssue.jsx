@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import server from "../enviroment";
 export default function NewIssue() {
   const navigate = useNavigate();
 
@@ -24,7 +24,7 @@ export default function NewIssue() {
 
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:3000/issue/create", {
+      const res = await fetch(`${server}/issue/create`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

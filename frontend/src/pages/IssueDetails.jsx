@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import server from "../enviroment";
 export default function IssueDetails() {
   const { id } = useParams(); // issue ID
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ export default function IssueDetails() {
 
   const fetchIssue = async () => {
     try {
-      const res = await axios.get(`http://localhost:3000/issue/${id}`);
+      const res = await axios.get(`${server}/issue/${id}`);
       setIssue(res.data);
     } catch (err) {
       console.error(err);

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
+import server from "../enviroment";
 export default function UpdateProfile() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ export default function UpdateProfile() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await fetch(`http://localhost:3000/userProfile/${id}`);
+        const res = await fetch(`${server}/userProfile/${id}`);
         const data = await res.json();
         setForm({ email: data.email, password: "", bio: data.bio || "" });
       } catch (err) {
@@ -22,7 +22,7 @@ export default function UpdateProfile() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await fetch(`http://localhost:3000/updateProfile/${id}`, {
+      await fetch(`${server}/updateProfile/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

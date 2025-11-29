@@ -3,7 +3,7 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext.jsx";
-
+import server from "../enviroment.js";
 export default function Login() {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ export default function Login() {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/login", {
+      const res = await fetch(`${server}/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

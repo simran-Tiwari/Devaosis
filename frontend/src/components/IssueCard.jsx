@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
-
+import server from "../enviroment";
 export default function IssueCard({ issue, repoId, refresh }) {
   const handleDelete = async () => {
     if (!window.confirm("Delete this issue?")) return;
     try {
-      await axios.delete(`http://localhost:3000/issue/delete/${issue._id}`);
+      await axios.delete(`${server}/issue/delete/${issue._id}`);
       refresh(); // refresh list
     } catch (err) {
       console.error(err);
